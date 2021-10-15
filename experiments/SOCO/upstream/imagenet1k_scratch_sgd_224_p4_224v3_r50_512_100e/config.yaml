@@ -1,0 +1,95 @@
+model:
+    type: R50_SOCO
+    kwargs:
+        image_encode:
+            bn_group_size: 32
+            bn_sync_stats: True
+            use_sync_bn: True
+            embed_dim: 1024
+            return_fpn: True
+            pretrained: None
+            momentum: True
+            roi_size: 7
+
+moco:
+    freeze_backbone: False
+    freeze_at: 5
+dist:
+    sync: False
+
+grad_clip:
+    type: norm
+    value: 1
+
+optimizer:
+    type: SGD
+    kwargs:
+        nesterov: True
+        momentum: 0.9
+        weight_decay: 0.0001
+    pconfig:
+        logit_scale:
+            lr: 0.0001
+
+
+lr_scheduler:
+    type: Cosine
+    kwargs:
+        base_lr: 0.001
+        warmup_lr: 0.4
+        min_lr: 0.0001
+        warmup_steps: 25600
+        max_iter: 256001
+
+label_smooth: 0.0
+ema:
+    enable: False
+data:
+    type: soco
+    json_dir: ['/mnt/lustre/xx/ssearch/ssearch_imagenet/']
+    read_from: mc
+    use_dali: False
+    batch_size: 16
+    num_workers: 4
+    proposal_num: 4
+    pin_memory: True
+    input_size: 224
+    v3_size: 224
+    test_resize: 224
+    use_box_jitter: False
+    random_assign: False
+    edge_assign: False
+
+    train:
+        root_dir: '/mnt/lustressd/share/images/train/'
+        meta_file: '/mnt/lustre/xx/ssearch/imagenet1k_ssearch_train.json'
+        image_reader:
+            type: pil
+        sampler:
+            type: distributed_iteration
+        transforms:
+            type: SOCO
+        fseek: True
+        soco_type: soco
+        use_ranked: False
+
+    test:
+        test_max_iter: 100
+        root_dir: '/mnt/lustressd/share/images/train/'
+        meta_file: '/mnt/lustre/xx/ssearch/imagenet1k_ssearch_train.json'
+        image_reader:
+            type: pil
+        sampler:
+            type: distributed
+        transforms:
+            type: SOCO
+        fseek: True
+        soco_type: soco
+        use_ranked: False
+
+saver:
+    print_freq: 200
+    val_freq: 1000
+    save_freq: 1000
+    save_many: True
+    resume: True

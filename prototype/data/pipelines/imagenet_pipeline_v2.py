@@ -1,7 +1,7 @@
 try:
     import prototype.spring.linklink as link_dali
 except ModuleNotFoundError:
-    print('import linklink.dali failed, linklink version should >= 0.2.0')
+    print('import spring.linklink.dali failed, linklink version should >= 0.2.0')
 
 import nvidia.dali.ops as ops
 import nvidia.dali.types as types
