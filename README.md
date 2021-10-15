@@ -4,6 +4,8 @@ A Simple Framwork for CV Pre-training Model based on [prototype](https://github.
 
 ## Models
 
+Click on the hyperlink to view details.
+
 - [SOCO:Aligning Pretraining for Detection via Object-Level Contrastive Learning](./experiments/SOCO/)
   
   - [Paper](https://arxiv.org/abs/2106.02637), [Official Code](https://github.com/hologerry/SoCo) 
