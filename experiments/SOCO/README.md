@@ -26,7 +26,7 @@ Then, train faster-rcnn-fpn on detectron2 with the same setting with [detco](htt
 
 ## Experiments
 
-| Method | setting | VOC-AP50 |
-| - | - | - | 
-| SOCO| bs512, syncBN, sgd, lr0.4, epoch100, weight decay$1e^{-4}$, v3:224 | 82.03 |
-| SOCO| bs2048, syncBN, lars, lr8, epoch400, weight decay$1e^{-5}$, v3:96| - |
+| Method | Setting | VOC-AP50 | VOC-AP50 |
+| - | - | - | - | 
+| SOCO| bs512, syncBN, sgd, lr0.4, epoch100, weight decay$1e^{-4}$, v3:224 | 55.7656| 82.03 |
+| SOCO| bs2048, syncBN, lars, lr8, epoch400, weight decay$1e^{-5}$, v3:96| - | - |
