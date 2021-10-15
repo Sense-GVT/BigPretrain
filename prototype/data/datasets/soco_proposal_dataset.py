@@ -9,7 +9,7 @@ import time
 from typing import List
 from .base_dataset import BaseDataset
 from prototype.data.image_reader import build_image_reader
-import linklink as link
+import spring.linklink as link
 import random
 import datetime
 import io
